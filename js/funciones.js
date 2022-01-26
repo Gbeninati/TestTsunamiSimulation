@@ -64,7 +64,8 @@ function guardarNodo(txt){
 }
 
 function showAlert(txt){
-    alert(txt);
+    //alert(txt);
+    console.log(txt);
 }
 
 function imprimirConsole(){
