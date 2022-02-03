@@ -79,35 +79,76 @@ function imprimirConsole(){
     
 }
 
-function guardarArchivo(){
+async function guardarUsuario(){
+    return fetch('https://test-tsunami.herokuapp.com/usuario/crear', {
+        method: "POST",
+        body: JSON.stringify({
+            "ruta": ruta.join(""),
+            "tiempos": tiempos.join(""),
+        }),
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        }
+    }).then((response)=>response.json())
+    .then((responseJson)=>{return responseJson});
+}
+
+async function guardarArchivo(){
     cambiarFlag();
     if(flag){
+        /*
         fetch('https://test-tsunami.herokuapp.com/usuario/crear', {
             method: "POST",
             body: JSON.stringify({
                 "ruta": ruta.join(""),
                 "tiempos": tiempos.join(""),
-                "grilla": movimientos.join(""),
-                "movimientos": tiempos_grilla.join("")
+                //"grilla": movimientos.join(""),
+                //"movimientos": tiempos_grilla.join("")
             }),
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json"
             }
         });
-        ruta.push("\n");
-        tiempos.push("\n");
-        movimientos.push("\n");
-        tiempos_grilla.push("\n");
+        */
+
         texto = texto.concat(ruta);
+        texto.push("\n");
         texto = texto.concat(tiempos);
+        texto.push("\n");
         texto = texto.concat(movimientos);
+        texto.push("\n");
         texto = texto.concat(tiempos_grilla);
+        texto.push("\n");
         texto.push("###\n");
+
+        const json = await guardarUsuario();
+    
+        console.log("id usuario", json);
+
+        
+        var arr1 = movimientos.join("").split(";");
+        var arr2 = tiempos_grilla.join("").split(";");
+        for(var i = 0; i < arr1.length - 1; i++){
+            fetch('https://test-tsunami.herokuapp.com/grilla/crear', {
+                method: "POST",
+                body: JSON.stringify({
+                    "idUsuario": json.id.toString(),
+                    "grilla": arr1[i],
+                    "movimientos": arr2[i],
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                }
+            });
+        }
         ruta = [];
         tiempos = [];
         movimientos = [];
         tiempos_grilla = [];
+
     }
 }
 
