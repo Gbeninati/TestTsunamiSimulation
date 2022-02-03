@@ -88,6 +88,7 @@ function guardarArchivo(){
                 "ruta": ruta.join(""),
                 "tiempos": tiempos.join(""),
                 "grilla": movimientos.join(""),
+                "movimientos": tiempos_grilla.join("")
             }),
             headers: {
                 "Content-Type": "application/json",
