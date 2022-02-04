@@ -131,7 +131,7 @@ async function guardarArchivo(){
         var arr1 = movimientos.join("").split(";");
         var arr2 = tiempos_grilla.join("").split(";");
         for(var i = 0; i < arr1.length - 1; i++){
-            fetch('https://test-tsunami.herokuapp.com/grilla/crear', {
+            await fetch('https://test-tsunami.herokuapp.com/grilla/crear', {
                 method: "POST",
                 body: JSON.stringify({
                     "idUsuario": json.id.toString(),
