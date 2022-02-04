@@ -13,6 +13,17 @@ var sizeGrilla = 100;
 
 console.log("Inicio API");
 
+if (localStorage.getItem("texto") !== null) {
+    console.log("datos encontrados");
+    var text_aux = localStorage.getItem("texto").split("+");
+    if(confirm("Se encontraron datos de una simulacion anterior ¿Desea cargar los datos?")){
+        console.log(text_aux);
+        texto.concat(text_aux);
+    }else{
+        localStorage.clear();
+    }
+}
+
 
 for(var i=1; i <= sizeGrilla; i++){
     grilla.push(0.0);
@@ -123,11 +134,13 @@ async function guardarArchivo(){
         texto.push("\n");
         texto.push("###\n");
 
+        localStorage.setItem("texto", texto.join("+"));
+
         const json = await guardarUsuario();
     
-        console.log("id usuario", json);
+        console.log("id usuario", typeof(json));
 
-        
+        if(json) 
         var arr1 = movimientos.join("").split(";");
         var arr2 = tiempos_grilla.join("").split(";");
         for(var i = 0; i < arr1.length - 1; i++){
@@ -151,6 +164,8 @@ async function guardarArchivo(){
         tiempos_grilla = [];
 
     }
+
+    console.log(localStorage.getItem("texto"))
 }
 
 function descargarArchivo(){
