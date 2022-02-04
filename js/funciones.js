@@ -137,6 +137,7 @@ async function guardarArchivo(){
                     "idUsuario": json.id.toString(),
                     "grilla": arr1[i],
                     "movimientos": arr2[i],
+                    "orden": i.toString()
                 }),
                 headers: {
                     "Content-Type": "application/json",
