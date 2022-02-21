@@ -108,22 +108,7 @@ async function guardarUsuario(){
 async function guardarArchivo(){
     cambiarFlag();
     if(flag){
-        /*
-        fetch('https://test-tsunami.herokuapp.com/usuario/crear', {
-            method: "POST",
-            body: JSON.stringify({
-                "ruta": ruta.join(""),
-                "tiempos": tiempos.join(""),
-                //"grilla": movimientos.join(""),
-                //"movimientos": tiempos_grilla.join("")
-            }),
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
-        });
-        */
-
+       
         texto = texto.concat(ruta);
         texto.push("\n");
         texto = texto.concat(tiempos);
@@ -165,7 +150,7 @@ async function guardarArchivo(){
 
     }
 
-    console.log(localStorage.getItem("texto"))
+    //console.log(localStorage.getItem("texto"))
 }
 
 function descargarArchivo(){
