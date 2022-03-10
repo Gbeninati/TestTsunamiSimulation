@@ -92,6 +92,7 @@ function imprimirConsole(){
 
 async function guardarUsuario(){
     return fetch('https://test-tsunami.herokuapp.com/usuario/crear', {
+    //return fetch('http://localhost:8080/usuario/crear', {
         method: "POST",
         body: JSON.stringify({
             "ruta": ruta.join(""),
@@ -130,6 +131,7 @@ async function guardarArchivo(){
         var arr2 = tiempos_grilla.join("").split(";");
         for(var i = 0; i < arr1.length - 1; i++){
             await fetch('https://test-tsunami.herokuapp.com/grilla/crear', {
+            //await fetch('http://localhost:8080/grilla/crear', {
                 method: "POST",
                 body: JSON.stringify({
                     "idUsuario": json.id.toString(),
